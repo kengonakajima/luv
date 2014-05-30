@@ -62,6 +62,10 @@ uv.tcp_connect(client, address.address, address.port, function ()
     p("client closed")
     uv.close(server)
   end
+  function client:onerror()
+    p("client error")
+    uv.close(server)
+  end
   uv.write(client, "Hello")
   uv.write(client, "World", function ()
     p("written from client")
